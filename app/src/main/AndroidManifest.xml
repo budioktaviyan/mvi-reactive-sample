@@ -2,6 +2,8 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="id.kotlin.reactive.mvi">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="id.kotlin.reactive.mvi.App"
         android:allowBackup="true"
@@ -11,5 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning" />
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity
+            android:name="id.kotlin.reactive.mvi.presentation.feature.home.HomeActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="id.kotlin.reactive.mvi.presentation.feature.detail.DetailActivity"
+            android:screenOrientation="portrait" />
+    </application>
 </manifest>

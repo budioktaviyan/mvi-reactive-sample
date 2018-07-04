@@ -1,10 +1,21 @@
 package id.kotlin.reactive.mvi
 
-import android.app.Application
+import android.app.Activity
+import android.support.multidex.MultiDexApplication
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import id.kotlin.reactive.mvi.presentation.di.DaggerAppComponent
+import javax.inject.Inject
 
-class App : Application() {
+class App : MultiDexApplication(), HasActivityInjector {
+
+    @Inject lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
+        DaggerAppComponent.builder().application(this).build().inject(this)
     }
+
+    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
 }
